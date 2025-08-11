@@ -1,0 +1,80 @@
+:root {
+  /* Layout */
+  --w: min(960px, 92vw);
+  --gap: 16px;
+  --radius: 14px;
+
+  /* Theme (Kanazawa gold + deep green) */
+  --primary: #1f5e47;         /* 深緑 */
+  --primary-ink: #ffffff;     /* テキスト on primary */
+  --accent: #c9a227;          /* 金沢の金色 */
+
+  /* Neutrals */
+  --bg: #fafafa;
+  --card-bg: #ffffff;
+  --text: #222;
+  --muted: #666;
+  --border: #e6e6e6;
+  --shadow: 0 3px 18px rgba(0,0,0,0.06);
+}
+body { font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; margin:0; color:var(--text); background:var(--bg); line-height:1.65; }
+header, main, footer { width: var(--w); margin: 0 auto; }
+header { padding: 40px 0 16px; text-align: center; }
+h1 { margin: 0 0 8px; font-size: clamp(22px, 3vw, 32px); }
+h2 { margin: 0 0 8px; font-size: clamp(18px, 2.4vw, 24px); }
+/* Links and accent underline */
+a { color: var(--primary); text-decoration-color: color-mix(in oklab, var(--primary), transparent 70%); }
+a:hover { text-decoration-color: var(--primary); }
+hr { border:0; height:1px; background: var(--border); }
+.grid { display:grid; gap: var(--gap); }
+/* Card style */
+.card { border:1px solid var(--border); border-radius:var(--radius); padding:20px; background:var(--card-bg); box-shadow:var(--shadow); transition: box-shadow .25s ease, transform .05s ease; }
+.card:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.10); }
+iframe { width:100%; border:0; }
+.muted { color:var(--muted); font-size:0.92rem; }
+/* Button style */
+.btn {
+  display:inline-block;
+  padding:12px 18px;
+  border-radius:999px;
+  border:1px solid color-mix(in oklab, var(--primary), white 30%);
+  background: var(--primary);
+  color: var(--primary-ink);
+  text-decoration:none;
+  font-weight:600;
+  letter-spacing:.02em;
+  transition: background-color .2s ease, border-color .2s ease, transform .05s ease, box-shadow .2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+.btn:hover { background: color-mix(in oklab, var(--primary), black 12%); border-color: color-mix(in oklab, var(--primary), white 10%); }
+.btn:active { transform: translateY(1px); box-shadow: 0 1px 4px rgba(0,0,0,.12); }
+.btn:focus-visible { outline: 3px solid color-mix(in oklab, var(--accent), white 40%); outline-offset: 2px; }
+.btn[disabled] { opacity:.55; cursor:not-allowed; filter:grayscale(.2); }
+.row { display:grid; grid-template-columns: 1fr; gap: var(--gap); }
+@media (min-width: 880px) {
+  .row { grid-template-columns: 1fr 1fr; }
+  :root { --gap: 20px; }
+  .card { padding: 28px; }
+  header { padding: 56px 0 20px; }
+}
+.qr { display:flex; gap:12px; align-items:center; }
+@media (max-width: 480px) {
+  :root { --gap: 14px; }
+  header { padding: 28px 0 12px; }
+  .card { padding: 18px; border-radius: 12px; }
+  .btn { padding: 12px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+.qr { display:flex; gap:12px; align-items:center; }
+/* RSVP (Google Forms 直POST) */
+#rsvp .form-row{margin:1rem 0; display:flex; flex-direction:column; gap:.5rem}
+#rsvp label{font-weight:500}
+#rsvp input[type="text"], #rsvp textarea{padding:.75rem;border:1px solid #ddd;border-radius:.6rem}
+#rsvp fieldset{border:0; padding:0; display:flex; flex-direction:column; gap:.5rem}
+#rsvp .btn{padding:.9rem 1.2rem;border-radius:999px;border:0;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+#rsvp .req{color:#e11; font-weight:600; margin-left:.25rem}
+#rsvp .honeypot{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+#thanks.thanks-card{margin-top:1.2rem;padding:1rem 1.2rem;border:1px solid #e5e7eb;border-radius:.75rem;background:#f8fafc}
+@media print{ .btn{display:none} header,main,footer{width:auto} body{background:#fff} .card{box-shadow:none} }
