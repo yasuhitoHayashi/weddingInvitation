@@ -75,3 +75,28 @@ iframe{ width:100%; border:0; }
     .btn{ display:block; width:100%; text-align:center; }
     #rsvp fieldset{ padding:.85rem; }
 }
+
+/* Greeting block in 概要 */
+.card .greeting { text-align: center; }
+.card .greeting p { margin: 0.5em 0; }
+.card .greeting .left { text-align: left; }
+.card .greeting .right { text-align: right; }
+
+#profile .profiles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+.profile-photo {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+.person h3 {
+  margin: 0.25rem 0;
+}
+@media (min-width: 600px) {
+  #profile .profiles {
+    grid-template-columns: 1fr 1fr;
+  }
+}
