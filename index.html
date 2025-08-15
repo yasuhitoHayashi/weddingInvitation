@@ -45,12 +45,12 @@
         <div class="person">
           <img src="img/yh.png" alt="新郎 林 靖人" class="profile-photo">
           <h3>林 靖人</h3>
-          <p>1996年5月19日 砺波市生まれ。</p>
+          <p>1996年5月19日 富山県砺波市生まれ。</p>
         </div>
         <div class="person">
           <img src="img/rh.png" alt="新婦 瀧本 理彩" class="profile-photo">
           <h3>瀧本 理彩</h3>
-          <p>1996年6月24日 倉敷市生まれ。</p>
+          <p>1996年6月24日 岡山県倉敷市生まれ。</p>
         </div>
       </div>
     </section>
@@ -92,12 +92,102 @@
       <p class="muted">プライバシー保護のため、このページのURLは招待者のみに共有してください。</p>
     </section>
 
+    <section class="card" id="hotels">
+      <h2>周辺ホテルの目安料金</h2>
+      <p class="muted">※ 表示は目安です。実際の料金は各ホテル・宿泊サイトをご確認ください。CSV: <a href="data/hotels.csv" target="_blank" rel="noopener">hotels.csv を開く</a></p>
+      <div id="hotels-status" class="muted" aria-live="polite">読み込み中…</div>
+      <div class="table-wrap">
+        <table id="hotels-table" class="table" aria-describedby="hotels-status">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <noscript>
+        <p>JavaScriptが無効なため一覧を表示できません。<a href="data/hotels.csv" target="_blank" rel="noopener">CSVファイル</a>をご覧ください。</p>
+      </noscript>
+    </section>
+
   </main>
+
+  <script>
+  (function(){
+    const CSV_URL = "data/hotels.csv";
+    const statusEl = document.getElementById("hotels-status");
+    const table    = document.getElementById("hotels-table");
+    if (!statusEl || !table) return;
+
+    const thead = table.querySelector("thead");
+    const tbody = table.querySelector("tbody");
+
+    function formatYen(v){
+      if (v == null) return "";
+      const s = String(v).trim();
+      if (!s) return "";
+      if (/[^\d.-]/.test(s)) return s; // 非数値はそのまま（例：「2万超えます！」）
+      const n = Number(s);
+      return Number.isNaN(n) ? s : n.toLocaleString("ja-JP");
+    }
+
+    function parseDelimited(text){
+      const delimiter = text.includes("\t") ? "\t" : ",";
+      const lines = text.replace(/\r\n?/g, "\n").split("\n").filter(l => l.trim() !== "");
+      return lines.map(line => line.split(delimiter).map(c => c.trim()));
+    }
+
+    function render(rows){
+      if (!rows || !rows.length){
+        statusEl.textContent = "データがありません。";
+        return;
+      }
+      const headers = rows[0];
+      const body = rows.slice(1);
+
+      // thead
+      thead.innerHTML = "";
+      const trHead = document.createElement("tr");
+      headers.forEach(h => {
+        const th = document.createElement("th");
+        th.textContent = h;
+        trHead.appendChild(th);
+      });
+      thead.appendChild(trHead);
+
+      // tbody
+      tbody.innerHTML = "";
+      body.forEach(cols => {
+        if (cols.every(c => !String(c || "").trim())) return;
+        const tr = document.createElement("tr");
+        cols.forEach((c, idx) => {
+          const td = document.createElement("td");
+          const h = headers[idx] || "";
+          td.textContent = /(金額|円)/.test(h) ? formatYen(c) : c;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+
+      const count = tbody.querySelectorAll("tr").length;
+      statusEl.textContent = `読み込み完了（${count}件）`;
+    }
+
+    fetch(CSV_URL, {cache: "no-store"})
+      .then(r => {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.text();
+      })
+      .then(text => render(parseDelimited(text)))
+      .catch(err => {
+        console.error(err);
+        statusEl.textContent = "読み込みに失敗しました。CSVの配置パスと公開設定を確認してください。";
+      });
+  })();
+  </script>
 
   <footer class="muted" style="text-align:center; padding:24px 0 60px;">
     © 2025 林 靖人・瀧本 理彩
   </footer>
 
+  
 
 </body>
 </html>
