@@ -104,3 +104,34 @@ iframe{ width:100%; border:0; }
 .map-frame { border: 0; width: 100%; height: 420px; }
 .phone-image { max-width: 180px; height: auto; vertical-align: middle; }
 .site-footer { text-align: center; padding: 24px 0 60px; }
+
+/* --- Hotels table: add row dividers, improve mobile readability --- */
+#hotels-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+#hotels-table thead th,
+#hotels-table tbody td {
+  padding: 12px 10px;
+}
+#hotels-table tbody tr {
+  border-bottom: 1px solid rgba(0,0,0,.12);
+}
+#hotels-table tbody tr:last-child {
+  border-bottom: 0;
+}
+/* Slightly larger touch targets on narrow screens */
+@media (max-width: 640px){
+  #hotels-table thead th,
+  #hotels-table tbody td {
+    padding: 14px 12px;
+  }
+}
+
+/* 交互色で視認性UP */
+#hotels-table tbody tr:nth-child(odd) { background: rgba(0,0,0,.02); }
+
+/* 数値列を右寄せ */
+#hotels-table td:nth-child(3),
+#hotels-table td:nth-child(4) { text-align: right; }
