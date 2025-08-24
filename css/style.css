@@ -1,16 +1,25 @@
 /* === Micro UI polish (Kanazawa palette) === */
 :root{
-    /* Kanazawa-inspired palette */
-    --vermilion:#d23c2e;   /* 朱色 */
-    --green:#1f3a2e;       /* 深緑 */
-    --gold:#e3ac15;        /* 金色 */
-    --paper:#ffffff;       /* 白 */
+  /* Kanazawa-inspired palette */
+  --vermilion:#d23c2e;   /* 朱色 */
+  --green:#1f3a2e;       /* 深緑 */
+  --gold:#e3ac15;        /* 金色 */
+  --paper:#ffffff;       /* 白 */
 
-    --text:#222;
-    --muted:#666;
-    --bg:#faf7f0;          /* わずかに温かい白 */
-    --radius:14px;
-    --gap:18px;            /* 余白をやや拡張 */
+  --text:#222;
+  --muted:#666;
+  --bg:#faf7f0;          /* わずかに温かい白 */
+
+  --radius:14px;
+  --gap:18px;            /* 余白をやや拡張 */
+  --shadow:0 6px 24px rgba(0,0,0,.05);
+  --ring: rgba(200,165,72,.26); /* 枠色（fallback） */
+}
+
+@supports (color: color-mix(in oklab, white, black)){
+  :root{
+    --ring: color-mix(in oklab, var(--gold) 24%, white);
+  }
 }
 
 html{ scroll-behavior:smooth; }
@@ -18,8 +27,8 @@ body{ background:var(--bg); color:var(--text); line-height:1.8; }
 
 header{ position:relative; padding:48px 0 18px; text-align:center; }
 header::after{ /* 金の霞を右から差す */
-    content:""; position:absolute; inset:auto 0 0 0; height:6px;
-    background:linear-gradient(90deg, transparent, rgba(200,165,72,.35));
+  content:""; position:absolute; inset:auto 0 0 0; height:6px;
+  background:linear-gradient(90deg, transparent, rgba(200,165,72,.35));
 }
 
 h1{ margin:0 0 10px; font-size:clamp(22px,3.8vw,34px); letter-spacing:.02em; }
@@ -27,19 +36,28 @@ h2{ margin:0 0 12px; font-size:clamp(19px,2.6vw,26px); }
 
 .grid{ display:grid; gap:var(--gap); width:min(960px,92vw); margin:0 auto; }
 
-.card{ background:var(--paper); border:1px solid rgba(0,0,0,.06); border-radius:var(--radius); padding:28px; box-shadow:0 6px 24px rgba(0,0,0,.05);
-    position:relative; }
+.card{
+  background:var(--paper);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:var(--radius);
+  padding:28px;
+  box-shadow:var(--shadow);
+  position:relative;
+}
 .card::before{ /* 朱色の見出し帯（細） */
-    content:""; position:absolute; top:0; left:0; right:0; height:4px; border-top-left-radius:var(--radius); border-top-right-radius:var(--radius);
-    background:linear-gradient(90deg, var(--vermilion), var(--gold));
+  content:""; position:absolute; top:0; left:0; right:0; height:4px;
+  border-top-left-radius:var(--radius); border-top-right-radius:var(--radius);
+  background:linear-gradient(90deg, var(--vermilion), var(--gold));
 }
 
 .muted{ color:var(--muted); }
 
 /* Buttons */
-.btn{ display:inline-block; padding:12px 18px; border-radius:999px; text-decoration:none; cursor:pointer;
-    background:var(--vermilion); color:#fff; border:1px solid transparent;
-    transition:background-color .18s ease, box-shadow .18s ease, transform .06s ease; }
+.btn{
+  display:inline-block; padding:12px 18px; border-radius:999px; text-decoration:none; cursor:pointer;
+  background:var(--vermilion); color:#fff; border:1px solid transparent;
+  transition:background-color .18s ease, box-shadow .18s ease, transform .06s ease;
+}
 .btn:hover{ background:#b93429; }
 .btn:active{ transform:translateY(1px); }
 .btn:focus, .btn:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(200,165,72,.45); }
@@ -49,20 +67,28 @@ iframe{ width:100%; border:0; }
 
 /* RSVP form spacing & accents */
 #rsvp .form-row{ margin:1.25rem 0; display:flex; flex-direction:column; gap:.6rem; }
-#rsvp fieldset{ border:0; padding:1rem; margin:1.25rem 0; border-left:5px solid var(--gold); border-radius:10px; background:linear-gradient(90deg, rgba(200,165,72,.08), rgba(200,165,72,.03)); }
+#rsvp fieldset{
+  border:0; padding:1rem; margin:1.25rem 0;
+  border-left:5px solid var(--gold); border-radius:10px;
+  background:linear-gradient(90deg, rgba(200,165,72,.08), rgba(200,165,72,.03));
+}
 #rsvp fieldset legend{ font-weight:700; color:var(--green); margin-bottom:.4rem; }
 #rsvp fieldset + fieldset{ margin-top:1.5rem; }
 #rsvp label{ font-weight:500; }
 #rsvp fieldset label{ display:flex; align-items:center; gap:.5rem; padding:.15rem 0; }
-#rsvp input[type="text"], #rsvp textarea{ padding:.85rem; border:1px solid #ddd; border-radius:.6rem; background:#fff; }
+#rsvp input[type="text"], #rsvp textarea{
+  padding:.85rem; border:1px solid #ddd; border-radius:.6rem; background:#fff;
+}
 #rsvp textarea{ min-height:3.5rem; }
-
 #attendingFields{ transition: opacity .18s ease; }
 #attendingFields[hidden]{ display:block !important; opacity:0; height:0; overflow:hidden; pointer-events:none; }
 
 /* Section titles with accent bar */
 .section-title{ position:relative; padding-left:12px; }
-.section-title::before{ content:""; position:absolute; left:0; top:.35em; bottom:.35em; width:6px; border-radius:4px; background:linear-gradient(180deg, var(--green), var(--gold)); }
+.section-title::before{
+  content:""; position:absolute; left:0; top:.35em; bottom:.35em; width:6px; border-radius:4px;
+  background:linear-gradient(180deg, var(--green), var(--gold));
+}
 
 /* Map section layout on wide screens */
 .row{ display:grid; grid-template-columns:1fr; gap:var(--gap); }
@@ -70,10 +96,10 @@ iframe{ width:100%; border:0; }
 
 /* Mobile tweaks */
 @media (max-width: 480px){
-    header{ padding:34px 0 14px; }
-    .card{ padding:22px; }
-    .btn{ display:block; width:100%; text-align:center; }
-    #rsvp fieldset{ padding:.85rem; }
+  header{ padding:34px 0 14px; }
+  .card{ padding:22px; }
+  .btn{ display:block; width:100%; text-align:center; }
+  #rsvp fieldset{ padding:.85rem; }
 }
 
 /* Greeting block in 概要 */
@@ -82,106 +108,125 @@ iframe{ width:100%; border:0; }
 .card .greeting .left { text-align: left; }
 .card .greeting .right { text-align: right; }
 
-#profile .profiles {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-}
-.profile-photo {
-  max-width: 100%;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-}
-.person h3 {
-  margin: 0.25rem 0;
-}
-@media (min-width: 600px) {
-  #profile .profiles {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.map-frame { border: 0; width: 100%; height: 420px; }
-.phone-image { max-width: 180px; height: auto; vertical-align: middle; }
-.site-footer { text-align: center; padding: 24px 0 60px; }
-
-/* --- Hotels table: add row dividers, improve mobile readability --- */
-#hotels-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 100%;
-}
-#hotels-table thead th,
-#hotels-table tbody td {
-  padding: 12px 10px;
-}
-#hotels-table tbody tr {
-  border-bottom: 1px solid rgba(0,0,0,.12);
-}
-#hotels-table tbody tr:last-child {
-  border-bottom: 0;
-}
-/* Slightly larger touch targets on narrow screens */
-@media (max-width: 640px){
-  #hotels-table thead th,
-  #hotels-table tbody td {
-    padding: 14px 12px;
-  }
-}
-
-/* 交互色で視認性UP */
-#hotels-table tbody tr:nth-child(odd) { background: rgba(0,0,0,.02); }
-
-/* 数値列を右寄せ */
-#hotels-table td:nth-child(3),
-#hotels-table td:nth-child(4) { text-align: right; }
-
-.invite { line-height: 1.9; }
-.invite p { margin: 0 0 .8em; }
-.invite h1 { margin: 0 0 1rem; }
-.invite .block + .block { margin-top: 2rem; } /* ブロック間の余白 */
-
-
-/* Schedule */
-.schedule{
-  list-style:none; margin:8px 0 0; padding:0;
-  border-top:1px solid var(--muted,#ddd);
-}
-.schedule li{
-  display:grid;
-  grid-template-columns:6.2em 1fr;
-  gap:.6em 1em;
-  padding:12px 0;
-  border-bottom:1px solid var(--muted,#ddd);
-}
-.schedule .time{
-  font-weight:700;
-  font-variant-numeric:tabular-nums;
-  line-height:1.2;
-}
-.schedule .detail{ line-height:1.6; }
-.schedule .place{
-  margin-left:.5em; color:var(--muted,#666); font-weight:500;
-}
-.schedule .note{
-  margin:.25em 0 0; color:var(--muted,#666); font-size:.95em;
-}
-@media (max-width: 480px){
-  .schedule{ border-top:0; }
-  .schedule li{ grid-template-columns:5em 1fr; }
-}
-
-
-.greeting {
+/* 挨拶文（枠幅制御＋拝啓/敬具の寄せ） */
+.greeting{
   max-width: 30em;   /* 本文の横幅（文字数ベース）を制限 */
   margin: 0 auto;    /* 全体は中央寄せ */
   line-height: 1.8;  /* 読みやすさ調整 */
 }
+.greeting .haikei{ text-align:left; }
+.greeting .keigu{ text-align:right; }
 
-.greeting .haikei {
-  text-align: left;
+/* Profiles */
+#profile .profiles{
+  display:grid; grid-template-columns:1fr; gap:1.5rem;
+}
+.profile-photo{
+  max-width:100%; border-radius:8px; margin-bottom:.5rem;
+}
+.person h3{ margin:.25rem 0; }
+@media (min-width: 600px){
+  #profile .profiles{ grid-template-columns:1fr 1fr; }
 }
 
-.greeting .keigu {
-  text-align: right;
+/* Map / images / footer */
+.map-frame{ border:0; width:100%; height:420px; }
+.phone-image{ max-width:180px; height:auto; vertical-align:middle; }
+.site-footer{ text-align:center; padding:24px 0 60px; }
+
+/* --- Hotels table: add row dividers, improve mobile readability --- */
+#hotels-table{
+  border-collapse:separate; border-spacing:0; width:100%;
+}
+#hotels-table thead th,
+#hotels-table tbody td{ padding:12px 10px; }
+#hotels-table tbody tr{ border-bottom:1px solid rgba(0,0,0,.12); }
+#hotels-table tbody tr:last-child{ border-bottom:0; }
+/* Slightly larger touch targets on narrow screens */
+@media (max-width: 640px){
+  #hotels-table thead th,
+  #hotels-table tbody td{ padding:14px 12px; }
+}
+/* 交互色で視認性UP */
+#hotels-table tbody tr:nth-child(odd){ background: rgba(0,0,0,.02); }
+/* 数値列を右寄せ */
+#hotels-table td:nth-child(3),
+#hotels-table td:nth-child(4){ text-align:right; }
+
+.invite{ line-height:1.9; }
+.invite p{ margin:0 0 .8em; }
+.invite h1{ margin:0 0 1rem; }
+.invite .block + .block{ margin-top:2rem; }
+
+/* =========================================================
+   Schedule Cards（今回のカード版：#schedule セクションに限定）
+   ========================================================= */
+#schedule.card{
+  /* 既存 .card の意匠を踏襲。余白のみ微調整 */
+  padding:28px 22px 26px;
+}
+
+/* 見出し */
+#schedule > h2{
+  text-align:center;
+  color:var(--green);
+  margin:0 0 14px;
+}
+
+/* 開催日 */
+#schedule .event-date{ text-align:center; margin:0 0 14px; }
+#schedule .event-date .label{
+  color:var(--green); font-weight:700; letter-spacing:.04em;
+  margin:.2rem 0 .1rem;
+}
+#schedule .event-date .date{
+  font-size:clamp(20px, 4vw, 28px); font-weight:800;
+}
+
+/* 子カード（挙式／食事会） */
+#schedule .event-card{
+  background:var(--paper);
+  border:1px solid var(--ring);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:18px 18px 16px;
+  margin:14px 0;
+  position:relative;
+}
+#schedule .event-card::before{ display:none; } /* 見出し帯は親のみ */
+
+#schedule .event-card > h3{
+  text-align:center;
+  margin:4px 0 12px;
+  font-size:clamp(17px, 2.2vw, 20px);
+  color:#1d2240;
+  letter-spacing:.06em;
+}
+
+/* 定義リスト */
+#schedule .kv{ display:grid; gap:.5rem .9rem; }
+#schedule .kv > div{
+  display:grid; grid-template-columns:7em 1fr;
+  align-items:baseline; column-gap:.9rem;
+}
+#schedule .kv dt{ color:var(--muted); font-weight:600; white-space:nowrap; }
+#schedule .kv dd{ margin:0; }
+
+/* 時刻を強調 */
+#schedule .event-time{
+  font-variant-numeric:tabular-nums;
+  font-weight:800; line-height:1.1;
+  font-size:clamp(28px, 6vw, 36px);
+}
+
+/* 仕切り線と注記 */
+#schedule .sep{
+  border:0; border-top:1px solid var(--ring);
+  margin:12px 0 10px;
+}
+#schedule .note{ margin:.25rem 0 0; color:var(--muted); line-height:1.7; }
+#schedule .nowrap{ white-space:nowrap; }
+
+@media (min-width: 640px){
+  #schedule .event-card{ padding:20px 22px 18px; }
 }
