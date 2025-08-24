@@ -170,3 +170,18 @@ iframe{ width:100%; border:0; }
   .schedule{ border-top:0; }
   .schedule li{ grid-template-columns:5em 1fr; }
 }
+
+
+.greeting {
+  max-width: 30em;   /* 本文の横幅（文字数ベース）を制限 */
+  margin: 0 auto;    /* 全体は中央寄せ */
+  line-height: 1.8;  /* 読みやすさ調整 */
+}
+
+.greeting .haikei {
+  text-align: left;
+}
+
+.greeting .keigu {
+  text-align: right;
+}
