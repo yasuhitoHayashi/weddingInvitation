@@ -136,9 +136,37 @@ iframe{ width:100%; border:0; }
 #hotels-table td:nth-child(3),
 #hotels-table td:nth-child(4) { text-align: right; }
 
-<style>
-  .invite { line-height: 1.9; }
-  .invite p { margin: 0 0 .8em; }
-  .invite h1 { margin: 0 0 1rem; }
-  .invite .block + .block { margin-top: 2rem; } /* ブロック間の余白 */
-</style>
+.invite { line-height: 1.9; }
+.invite p { margin: 0 0 .8em; }
+.invite h1 { margin: 0 0 1rem; }
+.invite .block + .block { margin-top: 2rem; } /* ブロック間の余白 */
+
+
+/* Schedule */
+.schedule{
+  list-style:none; margin:8px 0 0; padding:0;
+  border-top:1px solid var(--muted,#ddd);
+}
+.schedule li{
+  display:grid;
+  grid-template-columns:6.2em 1fr;
+  gap:.6em 1em;
+  padding:12px 0;
+  border-bottom:1px solid var(--muted,#ddd);
+}
+.schedule .time{
+  font-weight:700;
+  font-variant-numeric:tabular-nums;
+  line-height:1.2;
+}
+.schedule .detail{ line-height:1.6; }
+.schedule .place{
+  margin-left:.5em; color:var(--muted,#666); font-weight:500;
+}
+.schedule .note{
+  margin:.25em 0 0; color:var(--muted,#666); font-size:.95em;
+}
+@media (max-width: 480px){
+  .schedule{ border-top:0; }
+  .schedule li{ grid-template-columns:5em 1fr; }
+}
