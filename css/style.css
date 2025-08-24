@@ -168,7 +168,7 @@ iframe{ width:100%; border:0; }
 
 /* 見出し */
 #schedule > h2{
-  text-align:center;
+  text-align:left;
   color:var(--green);
   margin:0 0 14px;
 }
