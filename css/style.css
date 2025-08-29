@@ -117,6 +117,18 @@ iframe{ width:100%; border:0; }
 .greeting .haikei{ text-align:left; }
 .greeting .keigu{ text-align:right; }
 
+/* スマホ（例えば画面幅 600px 以下）の時はインライン化 */
+@media screen and (max-width: 600px) {
+  .greeting p {
+    display: inline;
+    margin: 0;                /* インラインなので段落間の余白は不要 */
+  }
+  .greeting {
+    white-space: pre-line;    /* 改行を活かしつつ、自動折り返し */
+    line-height: 1.8;
+  }
+}
+
 /* Profiles */
 #profile .profiles{
   display:grid; grid-template-columns:1fr; gap:1.5rem;
