@@ -121,14 +121,30 @@ iframe{ width:100%; border:0; }
 /* スマホ用 */
 @media (max-width: 768px) {
   .greeting {
-    text-align: center;         /* 子要素を中央寄せ */
-    max-inline-size: 22em;      /* 横幅を少し絞って行揃えを安定 */
+    text-align: center;
+    max-inline-size: 22em;
     margin-inline: auto;
     line-height: 1.9;
+    font-size: clamp(15px, 4.5vw, 18px);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
+
+  .greeting .haikei,
+  .greeting .keigu,
+  .greeting .date,
+  .greeting .name {
+    display: block;
+    white-space: normal;
+    margin: 0.2em 0;
+  }
+
   .greeting p {
-    display: inline-block;      /* 1文を“箱”として中央に置く */
-    white-space: nowrap;        /* 文中では折返さない */
+    display: inline-block;   /* 1文=1ブロックで中央配置 */
+    /* ← ここを変更 */
+    white-space: normal;     /* 文中の改行を許可（nowrapをやめる） */
+    word-break: keep-all;    /* 日本語の自動改行を基本抑制。<wbr>/<br> だけで折る */
+    max-width: 100%;         /* 親幅を超えないよう保険 */
     margin: 0.2em 0;
   }
 }
