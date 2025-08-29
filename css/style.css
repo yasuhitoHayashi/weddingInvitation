@@ -118,30 +118,27 @@ iframe{ width:100%; border:0; }
 .greeting .keigu{ text-align:right; }
 
 /* PCは現状維持 */
-.greeting p { display:block; margin:0.4em 0; }
-
-/* スマホだけ調整 */
-@media (max-width: 768px) {
-  .greeting { 
-    /* 行長（1行の文字数）を絞る：和文は em が扱いやすい */
-    max-inline-size: 20em; /* 18–22emで微調整して好みへ */
-    margin-inline: auto;
-    line-height: 1.9;
-    /* “見栄えの良い折返し” → Safari/Chrome新しめで有効 */
-    text-wrap: balance;     /* 対応外でも無害 */
-    text-wrap: pretty;      /* 併用でよりマシになる環境も */
-    /* 日本語の禁則などを強める */
-    line-break: strict;
-    word-break: keep-all;
-  }
-  .greeting p { 
-    display: inline;        /* 1段落に見せる */
-    margin: 0;
-  }
-  .greeting p::after { content: "　"; } /* 全角スペースで文間に余白 */
+.greeting p {
+  display: block;
+  margin: 0.4em 0;
 }
 
 
+/* スマホ用 */
+@media (max-width: 768px) {
+  .greeting {
+    text-align: center;         /* 子要素を中央寄せ */
+    max-inline-size: 22em;      /* 横幅を少し絞って行揃えを安定 */
+    margin-inline: auto;
+    line-height: 1.9;
+    font-size: clamp(15px, 4.5vw, 18px);
+  }
+  .greeting p {
+    display: inline-block;      /* 1文を“箱”として中央に置く */
+    white-space: nowrap;        /* 文中では折返さない */
+    margin: 0.2em 0;
+  }
+}
 /* Profiles */
 #profile .profiles{
   display:grid; grid-template-columns:1fr; gap:1.5rem;
