@@ -117,17 +117,30 @@ iframe{ width:100%; border:0; }
 .greeting .haikei{ text-align:left; }
 .greeting .keigu{ text-align:right; }
 
-/* スマホ（例えば画面幅 600px 以下）の時はインライン化 */
-@media screen and (max-width: 600px) {
-  .greeting p {
-    display: inline;
-    margin: 0;                /* インラインなので段落間の余白は不要 */
+/* PCは現状維持 */
+.greeting p { display:block; margin:0.4em 0; }
+
+/* スマホだけ調整 */
+@media (max-width: 768px) {
+  .greeting { 
+    /* 行長（1行の文字数）を絞る：和文は em が扱いやすい */
+    max-inline-size: 20em; /* 18–22emで微調整して好みへ */
+    margin-inline: auto;
+    line-height: 1.9;
+    /* “見栄えの良い折返し” → Safari/Chrome新しめで有効 */
+    text-wrap: balance;     /* 対応外でも無害 */
+    text-wrap: pretty;      /* 併用でよりマシになる環境も */
+    /* 日本語の禁則などを強める */
+    line-break: strict;
+    word-break: keep-all;
   }
-  .greeting {
-    white-space: pre-line;    /* 改行を活かしつつ、自動折り返し */
-    line-height: 1.8;
+  .greeting p { 
+    display: inline;        /* 1段落に見せる */
+    margin: 0;
   }
+  .greeting p::after { content: "　"; } /* 全角スペースで文間に余白 */
 }
+
 
 /* Profiles */
 #profile .profiles{
