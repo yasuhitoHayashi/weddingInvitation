@@ -117,12 +117,6 @@ iframe{ width:100%; border:0; }
 .greeting .haikei{ text-align:left; }
 .greeting .keigu{ text-align:right; }
 
-/* PCは現状維持 */
-.greeting p {
-  display: block;
-  margin: 0.4em 0;
-}
-
 
 /* スマホ用 */
 @media (max-width: 768px) {
@@ -131,7 +125,6 @@ iframe{ width:100%; border:0; }
     max-inline-size: 22em;      /* 横幅を少し絞って行揃えを安定 */
     margin-inline: auto;
     line-height: 1.9;
-    font-size: clamp(15px, 4.5vw, 18px);
   }
   .greeting p {
     display: inline-block;      /* 1文を“箱”として中央に置く */
