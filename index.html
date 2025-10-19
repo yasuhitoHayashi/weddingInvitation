@@ -11,10 +11,22 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="結婚式のご案内">
   <meta property="og:title" content="結婚式のご案内 | 林 靖人・瀧本 理彩">
-  <meta property="og:description" content="2025年11月8日（土）15:00｜金澤神社（石川県金沢市）。ご参列の方はフォームよりご回答ください。">
+  <meta property="og:description" content="2025年11月8日（土）15:00｜金澤神社（石川県金沢市）。">
   <meta property="og:url" content="https://yasuhitohayashi.github.io/weddingInvitation/">
   <meta property="og:image" content="https://yasuhitohayashi.github.io/weddingInvitation/img/ogp.jpg">
   <meta property="og:image:width" content="1200">
+  <style>
+    .timeline { width: 100%; border-collapse: collapse; }
+    .timeline th, .timeline td { padding: .6rem .8rem; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+    .timeline th { white-space: nowrap; text-align: left; font-weight: 600; }
+    .badge { display: inline-block; padding: .15rem .5rem; font-size: .8rem; border-radius: .5rem; background: #f3f4f6; }
+    .kv2 { display: grid; grid-template-columns: 8em 1fr; gap: .4rem .8rem; }
+    .note-list { margin: .6rem 0; padding-left: 1.2em; }
+    .nowrap { white-space: nowrap; }
+    .muted { color: #6b7280; }
+    .btn { display:inline-block; padding:.6rem 1rem; border:1px solid #d1d5db; border-radius:.5rem; text-decoration:none; }
+    @media (max-width: 640px){ .kv2{ grid-template-columns: 1fr; } .timeline th{ width:auto; } }
+  </style>
 </head>
 
 <body>
@@ -35,8 +47,6 @@
         <p>感謝の気持ちをこめてささやかながら<wbr>小宴を催したく存じます</p>
         <p>ご多用中のところ誠に恐縮ではございますが</p>
         <p>お会いできることを心より楽しみにしております</p>
-        <p>ご参列いただける方は下のGoogleフォームから</p>
-        <p>ご返信いただけますと幸いです</p>
         <p class="keigu">敬具</p>
         <p class="date">2025年8月吉日</p>
         
@@ -52,35 +62,63 @@
         <p class="date"><time datetime="2025-11-08">2025年11月8日（土）</time></p>
       </div>
 
-      <article class="event-card">
-        <h3>挙式</h3>
+      <!-- 当日の流れ（タイムライン） -->
+      <article class="event-card" aria-labelledby="flow-title">
+        <h3 id="flow-title">当日の流れ</h3>
+        <p class="muted">お時間に余裕をもってお越しください</p>
+        <table class="timeline">
+          <tbody>
+            <tr><th scope="row"><time datetime="2025-11-08T14:15">14:15</time></th><td>金澤神社 <span class="badge">控室</span>開放</td></tr>
+            <tr><th scope="row"><time datetime="2025-11-08T14:40">14:40</time></th><td>集合写真</td></tr>
+            <tr><th scope="row"><time datetime="2025-11-08T14:50">14:50</time></th><td>挙式（約40分）</td></tr>
+            <tr><th scope="row"><time datetime="2025-11-08T16:10">16:10</time></th><td>バスで金城樓へ移動<span class="muted">（自家用車でお越しの方はご自身でご移動ください）（挙式終了の15:40分から30分ほど余裕がございますので、ホンダの森公園など金澤神社周囲はこの時間で見てまわられるとよろしいかと思います</span></td></tr>
+            <tr><th scope="row"><time datetime="2025-11-08T16:30">16:30</time></th><td>食事会 開宴（約2時間）</td></tr>
+            <tr><th scope="row"><time datetime="2025-11-08T18:50">18:50</time></th><td>お開き・順次ご案内（バスで最寄り地点までお見送り）</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <!-- 挙式 詳細 -->
+      <article class="event-card" aria-labelledby="ceremony-title">
+        <h3 id="ceremony-title">挙式</h3>
         <div class="event-body">
-          <dl class="kv">
-            <div><dt>開始時刻</dt><dd class="event-time"><time datetime="2025-11-08T15:00">15:00</time></dd></div>
-            <div><dt>場所</dt><dd>金澤神社</dd></div>
-            <div><dt>控室集合</dt><dd><time datetime="2025-11-08T14:30">14:30</time></dd></div>
+          <dl class="kv2">
+            <dt>開始時刻</dt><dd><time datetime="2025-11-08T15:00">14:50</time></dd>
+            <dt>場所</dt><dd>金澤神社</dd>
+            <dt>控室集合</dt><dd><time datetime="2025-11-08T14:30">14:30</time>（授与所左の建物）（写真ここに）</dd>
           </dl>
           <hr class="sep">
-          <p class="note">当日は<span class="nowrap">14:30</span>に控室にお越しください</p>
-          <p class="note">近くに兼六園など金沢らしいスポットがございますのでぜひお立ち寄りください</p>
-
+          <p class="note">14:30 までに控室にお越しください。</p>
+          <p class="note">近隣には兼六園・金沢城公園などの名所がございます。</p>
+          <p class="note">式のあと、食事会への移動までに30分ほどお時間がございますので、本多の森公園など近隣は後でまわられてもよろしいかと思います。</p>
         </div>
       </article>
 
-      <article class="event-card">
-        <h3>食事会</h3>
+      <!-- 食事会 詳細 -->
+      <article class="event-card" aria-labelledby="reception-title">
+        <h3 id="reception-title">食事会</h3>
         <div class="event-body">
-          <dl class="kv">
-            <div><dt>開始時刻</dt><dd class="event-time"><time datetime="2025-11-08T16:30">16:30</time></dd></div>
-            <div><dt>場所</dt><dd>金城樓</dd></div>
+          <dl class="kv2">
+            <dt>開始時刻</dt><dd><time datetime="2025-11-08T16:30">16:30</time></dd>
+            <dt>場所</dt><dd>金城樓</dd>
+            <dt>移動</dt><dd>金澤神社から<span class="nowrap">バス</span>を手配します。お車で来てくださる方はご自身でご移動お願いいたします。</dd>
+            <dt>お見送り</dt><dd>車での移動ではない方について、お帰りはバスにてご案内いたします。</dd>
           </dl>
-          <hr class="sep">
-          <p class="note">金澤神社から金城樓へは移動のバスおよびタクシーを手配いたします</p>
-          <p class="note">金城樓からのお見送りはバスにて行います</p>
         </div>
       </article>
+
+      <!-- 交通アクセス -->
+      <article class="event-card" aria-labelledby="access-title">
+        <h3 id="access-title">アクセス</h3>
+        <div class="event-body">
+          <dl class="kv2">
+            <dt>最寄り</dt><dd>兼六園下（バス）より徒歩約3分／金沢駅からタクシー約15分</dd>
+            <dt>駐車場</dt><dd>大変申し訳ありませんが、金澤神社につきまして専用の駐車場のご用意ができておりません。すぐ近くにコインパーキングがございますのでそちらへの駐車をお願いいたします</dd>
+          </dl>
+        </div>
+      </article>
+
     </section>
-
 
     <section class="card" id="profile">
       <h2 class="section-title">新郎新婦紹介</h2>
@@ -98,147 +136,35 @@
       </div>
     </section>
 
-    <section id="rsvp" class="card">
-      <h2 class="section-title">ご出欠連絡</h2>
-      <iframe
-      title="ご出欠連絡（Googleフォーム）"
-      src="https://docs.google.com/forms/d/e/1FAIpQLSee_b62XsutAqpkugUrPVVb2oflpRt36BgAI9jMnfoxNdoU7w/viewform?embedded=true&hl=ja"
-      width="100%" height="1000" frameborder="0" loading="lazy">
-      </iframe>
-      <p class="muted">
-      初めて開く場合にCookieへのアクセスを求められますので　ブラウザで設定をオンにしてご回答ください
-      うまく表示されない場合は
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSee_b62XsutAqpkugUrPVVb2oflpRt36BgAI9jMnfoxNdoU7w/viewform" target="_blank" rel="noopener">こちら</a> を開いてください
-      </p>
-    </section>
-
+    <!-- 地図（変えずに継続） -->
     <section class="card row">
       <div>
         <h2 class="section-title">挙式</h2>
         <p>金澤神社（石川県金沢市兼六町1-3）</p>
-        <iframe title="金澤神社の地図" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4051.8179984071844!2d136.66024377582747!3d36.56053837231637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff833869270ab09%3A0x164cd59acafec97c!2z6YeR5r6k56We56S-!5e1!3m2!1sja!2sjp!4v1755406623039!5m2!1sja!2sjp" width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe title="金澤神社の地図" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4051.8179984071844!2d136.66024377582747!3d36.56053837231637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff833869270ab09%3A0x164cd59acafec97c!2z6YeR5r6k56We56S-!5e1!3m2!1sja!2sjp!4v1755406623039!5m2!1sja!2sjp" width="100%" height="420" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         <p><a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=金澤神社">Google マップで開く</a></p>
       </div>
       <div>
         <h2 class="section-title">食事会</h2>
         <p>金城樓（石川県金沢市橋場町2-2-23）</p>
-        <iframe title="金城樓の地図" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8102.610250201994!2d136.66428059999996!3d36.5703167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff8337426b71f79%3A0x6646d54eee81fe32!2z5paZ5Lqt5peF6aSoIOmHkeWfjuaokw!5e1!3m2!1sja!2sjp!4v1755406692335!5m2!1sja!2sjp" width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe title="金城樓の地図" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8102.610250201994!2d136.66428059999996!3d36.5703167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff8337426b71f79%3A0x6646d54eee81fe32!2z5paZ5Lqt5peF6aSoIOmHkeWfjuaokw!5e1!3m2!1sja!2sjp!4v1755406692335!5m2!1sja!2sjp" width="100%" height="420" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         <p><a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=金城樓">Google マップで開く</a></p>
       </div>
-    </section>
-
-    <section class="card" id="hotels">
-      <h2 class="section-title">周辺ホテルの目安料金</h2>
-      <p>大変恐縮ではございますが宿泊についてはみなさまのご手配にてお願いいたします</p>
-      <p class="muted">※ 表示は目安です（8/13時点楽天トラベル）実際の料金は各ホテルおよび宿泊サイトをご確認ください</p>
-      <div id="hotels-status" class="muted" aria-live="polite">読み込み中…</div>
-      <div class="table-wrap">
-        <table id="hotels-table" class="table" aria-describedby="hotels-status">
-          <thead></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <noscript>
-        <p>JavaScriptが無効なため一覧を表示できません<a href="hotels.csv" target="_blank" rel="noopener">CSVファイル</a>をご覧ください</p>
-      </noscript>
     </section>
 
     <section class="card">
       <h2>連絡事項</h2>
       <p>当日の緊急連絡先：
-        <img src="img/phone.png" alt="" style="max-width:180px;height:auto;vertical-align:middle;">
+        <img src="img/phone.png" alt="電話番号（画像表示）" style="max-width:180px;height:auto;vertical-align:middle;">
       </p>
-      <p class="muted">プライバシー保護のためこのページのURLはご招待のお客様のみに共有してください</p>
+      <p class="muted">プライバシー保護のためこのページのURLはご招待のお客様のみに共有してください。</p>
     </section>
 
   </main>
 
-  <script>
-  (function(){
-    const statusEl = document.getElementById("hotels-status");
-    const table    = document.getElementById("hotels-table");
-    if (!statusEl || !table) return;
-
-    const thead = table.querySelector("thead");
-    const tbody = table.querySelector("tbody");
-
-    // トライ順序: サイト直下 → GitHub raw
-    const CANDIDATES = [
-      "hotels.csv",
-      "https://raw.githubusercontent.com/yasuhitoHayashi/weddingInvitation/main/hotels.csv"
-    ];
-
-    function setStatus(msg){ statusEl.textContent = msg; }
-
-    function formatYen(v){
-      if (v == null) return "";
-      const s = String(v).trim();
-      if (!s) return "";
-      if (/[^\d.-]/.test(s)) return s; // 非数値はそのまま
-      const n = Number(s);
-      return Number.isNaN(n) ? s : n.toLocaleString("ja-JP");
-    }
-
-    function parseDelimited(text){
-      const delimiter = text.includes("\t") ? "\t" : ",";
-      const lines = text.replace(/\r\n?/g, "\n").split("\n").filter(l => l.trim() !== "");
-      return lines.map(line => line.split(delimiter).map(c => c.trim()));
-    }
-
-    function render(rows){
-      if (!rows || !rows.length){ setStatus("データがありません。"); return; }
-      const headers = rows[0];
-      const body = rows.slice(1);
-
-      thead.innerHTML = "";
-      const trHead = document.createElement("tr");
-      headers.forEach(h => { const th = document.createElement("th"); th.textContent = h; trHead.appendChild(th); });
-      thead.appendChild(trHead);
-
-      tbody.innerHTML = "";
-      body.forEach(cols => {
-        if (cols.every(c => !String(c || "").trim())) return;
-        const tr = document.createElement("tr");
-        cols.forEach((c, idx) => {
-          const td = document.createElement("td");
-          const h = headers[idx] || "";
-          td.textContent = /(金額|円)/.test(h) ? formatYen(c) : c;
-          tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
-      });
-      const count = tbody.querySelectorAll("tr").length;
-      setStatus(` `);
-    }
-
-    async function tryFetch(url){
-      try {
-        const r = await fetch(url, {cache: "no-store"});
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        const text = await r.text();
-        return text;
-      } catch (e){
-        console.warn("CSV fetch failed:", url, e);
-        return null;
-      }
-    }
-
-    (async () => {
-      for (const url of CANDIDATES){
-        setStatus(`読み込み中… (${url})`);
-        const text = await tryFetch(url);
-        if (text){ render(parseDelimited(text)); return; }
-      }
-      setStatus("読み込みに失敗しました。CSVの公開場所を確認してください（GitHub Pages で公開中か、または raw URL がアクセス可能か）。");
-    })();
-  })();
-  </script>
-
   <footer class="muted" style="text-align:center; padding:24px 0 60px;">
     © 2025 林 靖人　瀧本 理彩
   </footer>
-
-  
 
 </body>
 </html>
